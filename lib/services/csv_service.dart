@@ -51,25 +51,25 @@ class CsvService {
     // Since your CSV appears to have abbreviated team names
     switch (teamName) {
       case 'CSK':
-        return 'assets/logos/csk.png';
+        return 'assets/logos/csk.jpg';
       case 'MI':
-        return 'assets/logos/mi.png';
+        return 'assets/logos/mi.jpg';
       case 'RCB':
-        return 'assets/logos/rcb.png';
+        return 'assets/logos/rcb.jpg';
       case 'KKR':
-        return 'assets/logos/kkr.png';
+        return 'assets/logos/kkr.jpg';
       case 'DC':
-        return 'assets/logos/dc.png';
+        return 'assets/logos/dc.jpg';
       case 'PBKS':
-        return 'assets/logos/pbks.png';
+        return 'assets/logos/pbks.jpg';
       case 'RR':
-        return 'assets/logos/rr.png';
+        return 'assets/logos/rr.jpg';
       case 'SRH':
-        return 'assets/logos/srh.png';
+        return 'assets/logos/srh.jpg';
       case 'LSG':
-        return 'assets/logos/lsg.png';
+        return 'assets/logos/lsg.jpg';
       case 'GT':
-        return 'assets/logos/gt.png';
+        return 'assets/logos/gt.jpg';
       default:
         return 'assets/logos/default.png';
     }
