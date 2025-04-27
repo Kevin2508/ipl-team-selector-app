@@ -126,6 +126,9 @@ class _TeamSelectionScreenState extends State<TeamSelectionScreen> {
   }
 
   Widget _buildTeamCard(Team team) {
+    // Get full team name from abbreviation
+    final fullTeamName = _csvService.getFullTeamName(team.teamName);
+
     return GestureDetector(
       onTap: () {
         Provider.of<SelectionProvider>(context, listen: false).selectTeam(team);
@@ -169,7 +172,7 @@ class _TeamSelectionScreenState extends State<TeamSelectionScreen> {
                 ),
               ),
               child: Text(
-                team.teamName,
+                fullTeamName,
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   fontSize: 16,
@@ -186,25 +189,25 @@ class _TeamSelectionScreenState extends State<TeamSelectionScreen> {
 
   Color _getTeamColor(String teamName) {
     switch (teamName) {
-      case 'Chennai Super Kings':
+      case 'CSK':
         return Colors.yellow.shade700;
-      case 'Mumbai Indians':
+      case 'MI':
         return Colors.blue.shade800;
-      case 'Royal Challengers Bengaluru':
+      case 'RCB':
         return Colors.red.shade800;
-      case 'Kolkata Knight Riders':
+      case 'KKR':
         return Colors.purple;
-      case 'Delhi Capitals':
+      case 'DC':
         return Colors.blue;
-      case 'Punjab Kings':
+      case 'PBKS':
         return Colors.red;
-      case 'Rajasthan Royals':
+      case 'RR':
         return Colors.pink;
-      case 'Sunrisers Hyderabad':
+      case 'SRH':
         return Colors.orange;
-      case 'Lucknow Super Giants':
+      case 'LSG':
         return Colors.blue.shade300;
-      case 'Gujarat Titans':
+      case 'GT':
         return Colors.teal;
       default:
         return Colors.blueGrey;

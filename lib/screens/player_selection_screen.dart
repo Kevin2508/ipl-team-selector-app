@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import '../models/team.dart';
 import '../providers/selection_provider.dart';
+import '../services/csv_service.dart';
 import 'saved_selection_screen.dart';
 
 class PlayerSelectionScreen extends StatelessWidget {
@@ -10,6 +11,8 @@ class PlayerSelectionScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final csvService = CsvService();
+
     return Consumer<SelectionProvider>(
       builder: (ctx, provider, _) {
         final team = provider.selectedTeam;
@@ -22,9 +25,12 @@ class PlayerSelectionScreen extends StatelessWidget {
           return const SizedBox.shrink();
         }
 
+        // Get full team name from abbreviation
+        final fullTeamName = csvService.getFullTeamName(team.teamName);
+
         return Scaffold(
           appBar: AppBar(
-            title: Text('Select Players from ${team.teamName}'),
+            title: Text('Select Players from $fullTeamName'),
             backgroundColor: _getTeamColor(team.teamName),
           ),
           body: Column(
@@ -142,7 +148,7 @@ class PlayerSelectionScreen extends StatelessWidget {
                   Container(
                     margin: const EdgeInsets.all(8),
                     padding: const EdgeInsets.all(4),
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       color: Colors.green,
                       shape: BoxShape.circle,
                     ),
@@ -173,25 +179,25 @@ class PlayerSelectionScreen extends StatelessWidget {
 
   Color _getTeamColor(String teamName) {
     switch (teamName) {
-      case 'Chennai Super Kings':
+      case 'CSK':
         return Colors.yellow.shade700;
-      case 'Mumbai Indians':
+      case 'MI':
         return Colors.blue.shade800;
-      case 'Royal Challengers Bengaluru':
+      case 'RCB':
         return Colors.red.shade800;
-      case 'Kolkata Knight Riders':
+      case 'KKR':
         return Colors.purple;
-      case 'Delhi Capitals':
+      case 'DC':
         return Colors.blue;
-      case 'Punjab Kings':
+      case 'PBKS':
         return Colors.red;
-      case 'Rajasthan Royals':
+      case 'RR':
         return Colors.pink;
-      case 'Sunrisers Hyderabad':
+      case 'SRH':
         return Colors.orange;
-      case 'Lucknow Super Giants':
+      case 'LSG':
         return Colors.blue.shade300;
-      case 'Gujarat Titans':
+      case 'GT':
         return Colors.teal;
       default:
         return Colors.blueGrey;
